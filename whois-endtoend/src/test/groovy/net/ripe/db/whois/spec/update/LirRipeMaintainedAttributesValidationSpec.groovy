@@ -5,7 +5,7 @@ import net.ripe.db.whois.spec.BaseQueryUpdateSpec
 
 
 @org.junit.experimental.categories.Category(IntegrationTest.class)
-class  LirOrganisationAttributeValidationSpec extends BaseQueryUpdateSpec {
+class LirRipeMaintainedAttributesValidationSpec extends BaseQueryUpdateSpec {
 
     @Override
     Map<String, String> getTransients() {

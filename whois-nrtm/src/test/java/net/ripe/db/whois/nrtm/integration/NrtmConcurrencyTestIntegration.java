@@ -78,14 +78,14 @@ public class NrtmConcurrencyTestIntegration extends AbstractNrtmIntegrationBase 
 
         NrtmTestThread thread = new NrtmTestThread(query, MIN_RANGE + 1);
         thread.start();
-        countDownLatch.await(10L, TimeUnit.SECONDS);
+        countDownLatch.await(20L, TimeUnit.SECONDS);
         assertThat(thread.delCount, is(1));
 
         // expand serial range to include huge aut-num object
         countDownLatch = new CountDownLatch(1);
         thread.setLastSerial(MIN_RANGE + 4);
         setSerial(MIN_RANGE + 1, MIN_RANGE + 4);
-        countDownLatch.await(10L, TimeUnit.SECONDS);
+        countDownLatch.await(20L, TimeUnit.SECONDS);
 
         assertThat(thread.addCount, is(1));
         assertThat(thread.delCount, is(3));
@@ -109,7 +109,7 @@ public class NrtmConcurrencyTestIntegration extends AbstractNrtmIntegrationBase 
             thread.start();
         }
 
-        countDownLatch.await(10L, TimeUnit.SECONDS);
+        countDownLatch.await(20L, TimeUnit.SECONDS);
 
         for (NrtmTestThread thread : threads) {
             if (thread.error != null) {
@@ -124,7 +124,7 @@ public class NrtmConcurrencyTestIntegration extends AbstractNrtmIntegrationBase 
         // update MAX serial
         setSerial(MIN_RANGE, MAX_RANGE);
 
-        countDownLatch.await(10L, TimeUnit.SECONDS);
+        countDownLatch.await(20L, TimeUnit.SECONDS);
 
         // check results
 
